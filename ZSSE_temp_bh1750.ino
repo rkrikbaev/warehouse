@@ -34,14 +34,14 @@ byte buff[2];
 
 /* WIFI Settings */
 // Name of wifi network
-const char* ssid = "ZSSE_305k";
+const char* ssid = "wi-fi network name";
 
 // Password to wifi network
-const char* password = "terranova"; 
+const char* password = "wi-fi password name"; 
 
 /* Web Updater Settings */
 // Host Name of Device
-const char* host = "MK-DoorSensor1";
+const char* host = "host name";
 
 // Path to access firmware update page (Not Neccessary to change)
 const char* update_path = "/firmware";
@@ -54,11 +54,11 @@ const char* update_password = "Admin";
 
 /* MQTT Settings */
 // Topic which listens for commands
-char* outTopic = "ZSSE_WORKSHOP_TEMP"; 
-char* outTopic2 = "ZSSE_WORKSHOP_HUMIDITY";
-char* outTopic4 = "ZSSE_WORKSHOP_2NDFL_LUX1";
+char* outTopic = "WORKSHOP_TEMP"; 
+char* outTopic2 = "WORKSHOP_HUMIDITY";
+char* outTopic4 = "WORKSHOP_2NDFL_LUX1";
 //MQTT Server IP Address
-const char* server = "192.168.1.74";
+const char* server = "host ip";
 
 //Unique device ID 
 const char* mqttDeviceID = "MK-SmartHouseDeviceBhMotionRelay"; 
