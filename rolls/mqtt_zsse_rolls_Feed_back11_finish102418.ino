@@ -1,14 +1,9 @@
-
-
-
-
-
 #include <ESP8266WiFi.h>
 #include <MQTTClient.h>
 #include <EEPROM.h>
 
-const char ssid[] = "SSE1";
-const char pass[] = "terranova";
+const char ssid[] = "wi-fi network name";
+const char pass[] = "wi-fi network password";
 #define IN1  5 //12
 #define IN2  13 //4  //13
 #define IN3  4 //13 //4
@@ -83,7 +78,7 @@ if(EEPROM.read(0)==111){
 
   // Note: Local domain names (e.g. "Computer.local" on OSX) are not supported by Arduino.
   // You need to set the IP address directly.
-  client.begin("192.168.1.74", net);
+  client.begin("mqtt brocker ip", net);
   client.onMessage(messageReceived);
 
   connect();
@@ -105,7 +100,6 @@ void connect() {
   Serial.println("\nconnected!");
 
   client.subscribe("/hello");
-  // client.unsubscribe("/hello");
 }
 
 void loop() 
@@ -150,9 +144,6 @@ void loop()
   stepper(1); 
   if(i==2000 && currentMillis-last_time <<100 ){ 
     i=0;    
-   //String thisStringFeedback = String(steps_left);
-  // client.publish(outTopic, thisStringFeedback);
-  // Serial.println("1"); 
    }
    
  
@@ -211,10 +202,6 @@ i++;
  stepper(1);
  if(i==2000  && currentMillis-last_time <<100){ 
     i=0; 
-    
-  //String thisStringFeedback = String(steps_left);
-  // client.publish(outTopic, thisStringFeedback);
-  // Serial.println("4");
  } 
  
    
