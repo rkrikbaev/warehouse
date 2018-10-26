@@ -4,6 +4,7 @@
 
 const char ssid[] = "wi-fi network name";
 const char pass[] = "wi-fi network password";
+
 #define IN1  5 //12
 #define IN2  13 //4  //13
 #define IN3  4 //13 //4
@@ -36,7 +37,13 @@ uint8_t botton(const int buttonPin){
      last_millis = millis();
      return 0;}
    delay(30);
-   while (digitalRead(buttonPin) == 0);
+   while (digitalRead(buttonPin) == 0)
+    {
+    if (last_millis+1000 < millis()){ // длинное нажатие больше 1.0 сек
+     break; 
+    }
+   }
+
    delay(30);
    if (last_millis+65 > millis()){ // ложное срабатывание
      //Serial.println(millis()-last_millis);
@@ -78,7 +85,9 @@ if(EEPROM.read(0)==111){
 
   // Note: Local domain names (e.g. "Computer.local" on OSX) are not supported by Arduino.
   // You need to set the IP address directly.
+
   client.begin("mqtt brocker ip", net);
+
   client.onMessage(messageReceived);
 
   connect();
@@ -100,6 +109,7 @@ void connect() {
   Serial.println("\nconnected!");
 
   client.subscribe("/hello");
+
 }
 
 void loop() 
@@ -144,6 +154,7 @@ void loop()
   stepper(1); 
   if(i==2000 && currentMillis-last_time <<100 ){ 
     i=0;    
+
    }
    
  
@@ -202,6 +213,7 @@ i++;
  stepper(1);
  if(i==2000  && currentMillis-last_time <<100){ 
     i=0; 
+
  } 
  
    
