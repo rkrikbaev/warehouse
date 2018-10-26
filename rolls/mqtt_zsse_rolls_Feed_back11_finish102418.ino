@@ -1,8 +1,3 @@
-
-
-
-
-
 #include <ESP8266WiFi.h>
 #include <MQTTClient.h>
 #include <EEPROM.h>
@@ -41,7 +36,12 @@ uint8_t botton(const int buttonPin){
      last_millis = millis();
      return 0;}
    delay(30);
-   while (digitalRead(buttonPin) == 0);
+   while (digitalRead(buttonPin) == 0)
+    {
+    if (last_millis+1000 < millis()){ // длинное нажатие больше 1.0 сек
+     break; 
+    }
+   }
    delay(30);
    if (last_millis+65 > millis()){ // ложное срабатывание
      //Serial.println(millis()-last_millis);
